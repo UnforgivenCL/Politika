@@ -19,13 +19,14 @@ class UserRepository
         if ($user == null) {
             $user = User::create([
                 'facebook_id' => $facebookUser->getId(),
+                'facebook_avatar' => $facebookUser->getAvatar(),
                 'name' => $facebookUser->getName(),
                 'email' => $facebookUser->getEmail(),
             ]);
         }
 
-        app('auth')->login($user);
+        auth()->login($user);
 
-        return redirect()->to('/');
+        return redirect()->route('home');
     }
 }

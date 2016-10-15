@@ -103,5 +103,7 @@ class RegisterController extends Controller
         }
 
         $this->userRepo->registerByFacebook($facebookUser);
+
+        return redirect()->route('home');
     }
 }
