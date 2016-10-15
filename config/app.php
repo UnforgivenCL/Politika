@@ -168,6 +168,7 @@ return [
          */
 
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         /*
          * Application Service Providers...
