@@ -41,7 +41,7 @@ class Law extends AbstractEndpoint
             });
     }
 
-    public function getLatest()
+    public function getLatestPublished()
     {
         return $this->setHttpMethod('GET')
             ->setUriGenerator(function ($params) {
