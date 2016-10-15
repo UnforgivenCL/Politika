@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Repositories\UserRepository;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -31,11 +32,19 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * User repository to abstract Eloquent.
+     *
+     * @var UserRepository
+     */
+    protected $userRepo;
+
+    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
         $this->middleware('guest');
+        $this->userRepo = app(UserRepository::class);
     }
 
     /**
@@ -87,8 +96,12 @@ class RegisterController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        try {
+            $facebookUser = Socialite::driver('facebook')->user();
+        } catch (Exception $e) {
+            return 'Auth facebook error';
+        }
 
-        return $user->getEmail();
+        $this->userRepo->registerByFacebook($facebookUser);
     }
 }
