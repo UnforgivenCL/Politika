@@ -102,9 +102,6 @@ abstract class AbstractEndpoint
         try {
             $result = $this->client->request($this->httpMethod, $url);
 
-            // Count number of API requests sent
-            RequestTracker::track();
-
             // Process response data
             /*$data = json_decode($result->getBody(), true);
             if (isset($data[0]) && is_array($data[0])) {
@@ -113,7 +110,17 @@ abstract class AbstractEndpoint
 
             $data = $result->getBody();
 
-            return $data;
+            $xml = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+            $json = json_encode($xml);
+
+            $json_response = json_decode($json, true);
+
+            if (isset($json_response[0]) && is_array($json_response[0])) {
+                return new Collection($json_response);
+            }
+
+            return $json_response;
         } catch (ClientException $ex) {
             $response = $ex->getResponse();
         }
