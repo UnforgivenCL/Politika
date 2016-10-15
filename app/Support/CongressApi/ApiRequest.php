@@ -17,7 +17,7 @@ class ApiRequest
     public function __call($name, $args)
     {
         $map = [
-
+            'law' => Endpoints\Law::class,
         ];
 
         if (!isset($map[$name])) {
