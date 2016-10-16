@@ -7,6 +7,10 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class UserRepository
 {
+	public function isFacebookUser(User $user)
+	{
+		return (isset($user->facebook_id)) ? true : false;
+	}
     public function findByFacebookId($facebookId)
     {
         return User::where('facebook_id', $facebookId)->first();
