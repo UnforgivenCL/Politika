@@ -39,12 +39,25 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+
                 </div>
+
+                <div class="col-sm-3 col-md-3 ">
+				<form class="navbar-form" role="search" method="POST" action="{{ route('search.law') }}">
+					{{ csrf_field() }}
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Buscar" name="srch_term" id="srch-term">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</div>
+					</div>
+				</form>
+				</div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

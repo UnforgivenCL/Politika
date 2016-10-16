@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+Route::post('laws/search', ['uses' => 'WelcomeController@search', 'as' => 'search.law']);
+
 // Social Login
 
 Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider');

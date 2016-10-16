@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchLawsRequest;
 use App\Repositories\LawsRepository;
 
 class WelcomeController extends Controller
@@ -19,5 +20,12 @@ class WelcomeController extends Controller
 
         return view('welcome')
             ->with('laws', $lastLaws['NORMA']);
+    }
+
+    public function search(SearchLawsRequest $request)
+    {
+        $searchedLaws = $this->lawsRepo->getBySearch($request->srch_term);
+
+        dd($searchedLaws);
     }
 }
