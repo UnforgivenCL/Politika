@@ -24,5 +24,7 @@ $('#show-leyes').click(function () {
     $('html, body').animate({
       scrollTop: $('#ultimas-leyes').offset().top
     }, 2000)
+
+    $('#representantes').fadeIn('slow', function () {})
   })
 })

@@ -36,10 +36,25 @@
 			</div>
 			@endforeach
 		</div>
-		<div class="row">
+		<div class="row" id="representantes">
 			<div class="container-fluid">
 				<div class="text-center">
 					<h2>¿Interesado en <strong>quién</strong> te representa?</h2>
+					<div class="col-md-4">
+						<div>
+							<h4>¿Que partido político tiene mayor presencia?</h4>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div>
+							<h4>¿Quienes representan mi región?</h4>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div>
+							<h4>¿Quienes tienen mayor/menor asistencia al congreso?</h4>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
