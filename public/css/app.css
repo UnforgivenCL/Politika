@@ -12,6 +12,12 @@
 #landing h3 {
   color: #212121; }
 
+#ultimas-leyes {
+  display: none; }
+
+.color-destacador {
+  color: #D32F2F; }
+
 /* Laws Show */
 .fixed-panel {
   min-height: 275px;

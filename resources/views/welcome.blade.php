@@ -10,12 +10,15 @@
 			</div>
 		</div>
 	</div>
+	<hr>
 	<div class="container-fluid">
-		<div class="text-center">
-			<h1>Nuestro deber es informar, debatir para progresar</h1>
-			<h4>Conoce las últimas leyes publicadas</h4>
+		<div class="text-center" id="mensaje-landing">
+			<h1>Nuestro <span class="color-destacador">deber</span> es informar, <u>debatir</u> para progresar</h1>
+			<h4>¿Quieres conocer las últimas leyes publicadas?</h4>
+			<button class="btn btn-info btn-lg" id="show-leyes">Ver Leyes</button>
 		</div>
-		<div class="row">
+		<hr>
+		<div class="row" id="ultimas-leyes">
 			@foreach ($laws as $law)
 			<div class="col-md-4">
 				<div class="panel panel-default">
@@ -32,6 +35,13 @@
 				</div>
 			</div>
 			@endforeach
+		</div>
+		<div class="row">
+			<div class="container-fluid">
+				<div class="text-center">
+					<h2>¿Interesado en <strong>quién</strong> te representa?</h2>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection

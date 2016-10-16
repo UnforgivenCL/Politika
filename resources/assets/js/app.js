@@ -18,3 +18,11 @@ Vue.component('laws', require('./components/LatestLaws.vue'))
 const app = new Vue({
   el: '#app'
 })
+
+$('#show-leyes').click(function () {
+  $('#ultimas-leyes').fadeIn('slow', function () {
+    $('html, body').animate({
+      scrollTop: $('#ultimas-leyes').offset().top
+    }, 2000)
+  })
+})
