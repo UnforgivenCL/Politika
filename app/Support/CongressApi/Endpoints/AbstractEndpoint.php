@@ -3,7 +3,7 @@
 namespace App\Support\CongressApi\Endpoints;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Collection;
 use GuzzleHttp\Psr7\Request;
 
@@ -13,6 +13,10 @@ abstract class AbstractEndpoint
     protected $params = [];
     protected $uriGenerator;
     protected $httpMethod = 'GET';
+
+    protected $errorCodes = [
+        500 => \App\Support\CongressApi\Exceptions\InternalServerErrorException::class,
+    ];
 
     public function __construct(ClientInterface $client, $args = [])
     {
@@ -121,8 +125,27 @@ abstract class AbstractEndpoint
             }
 
             return $json_response;
-        } catch (ClientException $ex) {
+        } catch (ServerException $ex) {
             $response = $ex->getResponse();
+
+            return $this->handleError($response);
         }
+    }
+
+    /**
+     * Children classes have to define how to handle with error.
+     * Throwing exceptions for example.
+     *
+     * @param  $response Response returned from Riot API
+     */
+    public function handleError($response)
+    {
+        $code = $response->getStatusCode();
+        if (!isset($this->errorCodes[$code])) {
+            throw new \ErrorException('Unsupported error for status code: '.$code);
+        }
+        $ex = new $this->errorCodes[$code]();
+        $ex->response = $response;
+        throw $ex;
     }
 }

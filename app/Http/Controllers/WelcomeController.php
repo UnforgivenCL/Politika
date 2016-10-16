@@ -22,6 +22,13 @@ class WelcomeController extends Controller
             ->with('laws', $lastLaws['NORMA']);
     }
 
+    public function searchByBCN($bcnId)
+    {
+        $law = $this->lawsRepo->getLatestByBCN($bcnId);
+
+        dd($law);
+    }
+
     public function search(SearchLawsRequest $request)
     {
         $searchedLaws = $this->lawsRepo->getBySearch($request->srch_term);

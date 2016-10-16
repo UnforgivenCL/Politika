@@ -17,9 +17,11 @@ Auth::routes();
 
 Route::get('home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+Route::get('laws/{id}', ['uses' => 'WelcomeController@searchByBCN', 'as' => 'search.law.bcn']);
+
 Route::post('laws/search', ['uses' => 'WelcomeController@search', 'as' => 'search.law']);
 
 // Social Login
 
-Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider');
+Route::get('auth/facebook', ['uses' => 'Auth\RegisterController@redirectToProvider', 'as' => 'login.facebook']);
 Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
