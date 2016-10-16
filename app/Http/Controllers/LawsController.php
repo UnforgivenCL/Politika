@@ -24,7 +24,7 @@ class LawsController extends Controller
     public function searchByBCN($bcnId)
     {
         $law = $this->lawsRepo->getLatestByBCN($bcnId);
-        //dd($law);
+
         return view('laws.law')
             ->with('law', $law);
     }
