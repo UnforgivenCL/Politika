@@ -14,6 +14,13 @@ class LawsController extends Controller
         $this->lawsRepo = app(LawsRepository::class);
     }
 
+    public function getLatest()
+    {
+        $lastLaws = $this->lawsRepo->getLatestLaws(9);
+
+        return $lastLaws;
+    }
+
     public function searchByBCN($bcnId)
     {
         $law = $this->lawsRepo->getLatestByBCN($bcnId);

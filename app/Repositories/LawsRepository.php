@@ -32,7 +32,13 @@ class LawsRepository
 
     public function getLatestLaws($paginate)
     {
-        $laws = app('congress')->law()->paginate($paginate)->getLatestPublished()->fetch();
+        $key = 'latest-laws-paginate-'.$paginate;
+        $laws = app('cache')->get($key);
+
+        if ($laws === null) {
+            $laws = app('congress')->law()->paginate($paginate)->getLatestPublished()->fetch();
+            app('cache')->put($key, $laws, 60 * 24);
+        }
 
         return $laws;
     }
