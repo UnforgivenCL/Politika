@@ -6,7 +6,8 @@ class LawsRepository
 {
     public function getLatestLaws()
     {
-        $asd = app('congress')->law()->paginate(5)->getLatestPublished()->fetch();
-        dd($asd);
+        $laws = app('congress')->law()->paginate(5)->getLatestPublished()->fetch();
+
+        return $laws;
     }
 }

@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $asd = $this->lawsRepo->getLatestLaws();
-
         return view('home');
     }
 }
