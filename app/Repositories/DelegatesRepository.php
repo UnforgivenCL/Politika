@@ -24,6 +24,21 @@ class DelegatesRepository
         'XV de Arica y Parinacota',
     ];
 
+    public static $politicalGroups = [
+        'Izquierda Ciudadana' => '1',
+        'Partido Socialista' => '2',
+        'Unión Demócrata Independiente' => '3',
+        'Partido Demócrata Cristiano' => '4',
+        'Partido Por la Democracia' => '5',
+        'Renovación Nacional' => '6',
+        'Independientes' => '7',
+        'Amplitud' => '8',
+        'Partido Comunista' => '9',
+        'Partido Radical Social Demócrata' => '10',
+        'Evopolis' => '11',
+        'Partido Liberal de Chile' => '12',
+    ];
+
     public function updateDelegatesRegion()
     {
         $delegates = Delegate::all();
@@ -36,9 +51,28 @@ class DelegatesRepository
         }
     }
 
+    public function updateDelegatesPoliticalGroup()
+    {
+        $delegates = Delegate::all();
+
+        foreach ($delegates as $delegate) {
+            if (isset(self::$politicalGroups[$delegate->partido])) {
+                $delegate->partido = self::$politicalGroups[$delegate->partido];
+                $delegate->save();
+            }
+        }
+    }
+
     public function getDelegatesByRegion($regionId)
     {
         $delegates = Delegate::where('region', $regionId)->get();
+
+        return $delegates;
+    }
+
+    public function getDelegatesByPoliticalGroup($politicalGroupId)
+    {
+        $delegates = Delegate::where('partido', $politicalGroupId)->get();
 
         return $delegates;
     }
