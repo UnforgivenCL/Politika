@@ -4,7 +4,7 @@ namespace App;
 
 class Delegate extends Model
 {
-    protected $collection = 'diputados';
+    protected $collection = 'delegates';
 
     protected $fillable = [
         'nombre', 'region', 'distrito', 'partido',
