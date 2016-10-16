@@ -6,9 +6,9 @@ use App\Support\CongressApi\Exceptions\InternalServerErrorException;
 
 class LawsRepository
 {
-    public function getLatestLaws()
+    public function getLatestLaws($paginate)
     {
-        $laws = app('congress')->law()->paginate(5)->getLatestPublished()->fetch();
+        $laws = app('congress')->law()->paginate($paginate)->getLatestPublished()->fetch();
 
         return $laws;
     }
@@ -26,8 +26,12 @@ class LawsRepository
 
     public function getBySearch($search)
     {
-        $laws = app('congress')->law()->paginate(5)->content($search)->getByContent()->fetch();
+        try {
+            $laws = app('congress')->law()->paginate(5)->content($search)->getByContent()->fetch();
 
-        return $laws;
+            return $laws;
+        } catch (InternalServerErrorException $e) {
+            return 'No existen leyes con tal contenido';
+        }
     }
 }

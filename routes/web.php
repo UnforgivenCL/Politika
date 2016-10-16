@@ -17,9 +17,9 @@ Auth::routes();
 
 Route::get('home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
-Route::get('laws/{id}', ['uses' => 'WelcomeController@searchByBCN', 'as' => 'search.law.bcn']);
+Route::get('laws/{id}', ['uses' => 'LawsController@searchByBCN', 'as' => 'search.law.bcn']);
 
-Route::post('laws/search', ['uses' => 'WelcomeController@search', 'as' => 'search.law']);
+Route::post('laws/search', ['uses' => 'LawsController@search', 'as' => 'search.law']);
 
 // Social Login
 

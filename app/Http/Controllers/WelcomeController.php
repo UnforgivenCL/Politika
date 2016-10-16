@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SearchLawsRequest;
 use App\Repositories\LawsRepository;
 
 class WelcomeController extends Controller
@@ -16,23 +15,9 @@ class WelcomeController extends Controller
 
     public function index()
     {
-        $lastLaws = $this->lawsRepo->getLatestLaws();
+        $lastLaws = $this->lawsRepo->getLatestLaws(9);
 
         return view('welcome')
             ->with('laws', $lastLaws['NORMA']);
-    }
-
-    public function searchByBCN($bcnId)
-    {
-        $law = $this->lawsRepo->getLatestByBCN($bcnId);
-
-        dd($law);
-    }
-
-    public function search(SearchLawsRequest $request)
-    {
-        $searchedLaws = $this->lawsRepo->getBySearch($request->srch_term);
-
-        dd($searchedLaws);
     }
 }

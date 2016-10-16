@@ -44,8 +44,8 @@
 
                 <div class="col-sm-3 col-md-3 ">
 				<form class="navbar-form" role="search" method="POST" action="{{ route('search.law') }}">
-					{{ csrf_field() }}
 					<div class="input-group">
+					 	{{ csrf_field() }}
 						<input type="text" class="form-control" placeholder="Buscar" name="srch_term" id="srch-term">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -65,7 +65,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesión</a></li>
-                            <li><a href="{{ url('/register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Únete a Politika</a></li>
+                            <li><a href="{{ url('/register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Únete a <strong>Politika</strong></a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -77,7 +77,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Cerrar Sesión
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

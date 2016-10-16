@@ -12,6 +12,12 @@
 #landing h3 {
   color: #212121; }
 
+/* Laws Show */
+.fixed-panel {
+  min-height: 275px;
+  max-height: 10px;
+  overflow-y: scroll; }
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.

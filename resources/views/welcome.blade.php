@@ -16,36 +16,22 @@
 			<h4>Conoce las últimas leyes publicadas</h4>
 		</div>
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			@foreach ($laws as $law)
+			<div class="col-md-4">
 				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading"><div class="text-center"><h5>ÚLTIMAS LEYES</h5></div></div>
-
-				  <!-- Table -->
-				  <table class="table table-responsive table-bordered table-hover table-condensed">
-				  	<thead>
-				  		<tr>
-				  			<td>Número BCN</td>
-				  			<td>Ley Nº</td>
-				  			<td>Titulo</td>
-				  			<td>Fecha Publicación</td>
-				  			<td>Fecha Promulgación</td>
-				  		</tr>
-				  	</thead>
-				  	<tbody>
-				  		@foreach ($laws as $law)
-					  		<tr>
-					  			<td><strong>{{ $law['@attributes']['nro_bcn'] }}</strong></td>
-					  			<td>{{ $law['TIPOS_NUMEROS']['TIPO_NUMERO']['COMPUESTO'] }}</td>
-					  			<td>{{ $law['TITULO'] }}</td>
-					  			<td>{{ $law ['FECHA_PUBLICACION']}}</td>
-					  			<td>{{ $law['FECHA_PROMULGACION'] }}</td>
-					  		</tr>
-				  		@endforeach
-				  	</tbody>
-				  </table>
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Numero BCN Nº <strong>{{ $law['@attributes']['nro_bcn'] }}</strong></h3>
+				  </div>
+				  <div class="panel-body fixed-panel">
+				    <h3>{{ $law['TIPOS_NUMEROS']['TIPO_NUMERO']['COMPUESTO'] }}</h3>
+				    <h4>{{ $law['TITULO'] }}</h4>
+				    <p>Fecha publicación: {{ $law ['FECHA_PUBLICACION']}}</p>
+				    <p>Fecha promulgación: {{ $law['FECHA_PROMULGACION'] }}</p>
+				  </div>
+				  <div class="panel-footer"><a href="{{ route('search.law.bcn', ['bcnId' => $law['@attributes']['nro_bcn']]) }}"><button class="btn btn-info">Más Información</button></a></div>
 				</div>
 			</div>
+			@endforeach
 		</div>
 	</div>
 @endsection
