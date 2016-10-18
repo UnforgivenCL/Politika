@@ -5,7 +5,13 @@
 		<div class="container">
 			<h2>{{ isset($law['Metadatos']['TituloNorma']) ? $law['Metadatos']['TituloNorma'] : 'Sin información' }}</h2>
 			<h2>Norma Nº {{ isset($law['@attributes']['normaId']) ? $law['@attributes']['normaId'] : 'Sin información' }}</h2>
-			<p>Organismo: {{ isset($law['Identificador']['Organismos']['Organismo']) ? $law['Identificador']['Organismos']['Organismo'] : 'Sin información' }}</p>
+			@if (isset($law['Identificador']['Organismos']['Organismo']) && is_array($law['Identificador']['Organismos']['Organismo']))
+				@foreach ($law['Identificador']['Organismos']['Organismo'] as $organism)
+					<p>Organismo: {{ $organism }}</p>
+				@endforeach
+			@else
+				<p>Organismo: {{ isset($law['Identificador']['Organismos']['Organismo']) ? $law['Identificador']['Organismos']['Organismo'] : 'Sin información' }}</p>
+			@endif
 			<p>Fecha de versión norma: {{ isset($law['@attributes']['fechaVersion']) ? $law['@attributes']['fechaVersion'] : 'Sin información' }}</p>
 			<div class="text-center">
 				<h3>¿Te interesa debatir sobre esta norma?</h3>
