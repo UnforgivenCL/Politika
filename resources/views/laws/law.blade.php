@@ -3,10 +3,10 @@
 @section('content')
 	<div class="jumbotron">
 		<div class="container">
-			<h2>{{ $law['Metadatos']['TituloNorma'] }}</h2>
-			<h2>Norma Nº {{ $law['@attributes']['normaId'] }}</h2>
-			<p>Organismo: {{ $law['Identificador']['Organismos']['Organismo'] }}</p>
-			<p>Fecha de versión norma: {{ $law['@attributes']['fechaVersion'] }}</p>
+			<h2>{{ isset($law['Metadatos']['TituloNorma']) ? $law['Metadatos']['TituloNorma'] : 'Sin información' }}</h2>
+			<h2>Norma Nº {{ isset($law['@attributes']['normaId']) ? $law['@attributes']['normaId'] : 'Sin información' }}</h2>
+			<p>Organismo: {{ isset($law['Identificador']['Organismos']['Organismo']) ? $law['Identificador']['Organismos']['Organismo'] : 'Sin información' }}</p>
+			<p>Fecha de versión norma: {{ isset($law['@attributes']['fechaVersion']) ? $law['@attributes']['fechaVersion'] : 'Sin información' }}</p>
 			<div class="text-center">
 				<h3>¿Te interesa debatir sobre esta norma?</h3>
 				<button class="btn btn-info">Iniciar Debate</button>
@@ -24,7 +24,7 @@
 				@endforeach
 			@endif
 			<h3>Promulgación:</h3>
-			<p>{{ $law['Promulgacion']['Texto'] }}</p>
+			<p>{{ isset($law['Promulgacion']['Texto']) ? $law['Promulgacion']['Texto'] : 'Sin información' }}</p>
 		</div>
 	</div>
 @endsection

@@ -4,13 +4,13 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  background-image: url("../img/index/background.jpeg"); }
+  background-image: url("../img/index/prueba.jpg"); }
 
 #landing h1 {
   color: #D32F2F; }
 
 #landing h3 {
-  color: #212121; }
+  color: white; }
 
 #ultimas-leyes {
   display: none; }
