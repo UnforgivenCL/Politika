@@ -170,6 +170,7 @@ return [
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Unforgivencl\LaraChileanLaw\LaraChileanLawServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -179,7 +180,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\CongressApiServiceProvider::class,
 
     ],
 
@@ -229,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'LaraChileanLaw' => Unforgivencl\LaraChileanLaw\Facades\LaraChileanLaw::class,
     ],
 
 ];
