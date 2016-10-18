@@ -13,10 +13,10 @@
   color: white; }
 
 #ultimas-leyes {
-  display: none; }
+  display: hidden; }
 
 #representantes {
-  display: none; }
+  display: hidden; }
 
 .color-destacador {
   color: #D32F2F; }

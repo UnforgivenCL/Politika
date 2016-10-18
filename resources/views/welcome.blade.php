@@ -15,7 +15,7 @@
 		<div class="text-center" id="mensaje-landing">
 			<h1>Nuestro <span class="color-destacador">deber</span> es informar, <u>debatir</u> para progresar</h1>
 			<h4>¿Quieres conocer las últimas leyes publicadas?</h4>
-			<button class="btn btn-info btn-lg" id="show-leyes">Ver Leyes</button>
+
 		</div>
 		<hr>
 		<div class="row" id="ultimas-leyes">

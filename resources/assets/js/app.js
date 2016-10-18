@@ -19,7 +19,7 @@ const app = new Vue({
   el: '#app'
 })
 
-$('#show-leyes').click(function () {
+/*$('#show-leyes').click(function () {
   $('#ultimas-leyes').fadeIn('slow', function () {
     $('html, body').animate({
       scrollTop: $('#ultimas-leyes').offset().top
@@ -27,4 +27,6 @@ $('#show-leyes').click(function () {
 
     $('#representantes').fadeIn('slow', function () {})
   })
-})
+})*/
+
+sr.reveal('#ultimas-leyes, #representantes')
