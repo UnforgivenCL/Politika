@@ -19,7 +19,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $lastLaws = $this->lawsRepo->getLatestLaws(3);
-        dd(app('congress')->votation()->setDelegates()->number('8575')->getDelegatesVotation()->fetch());
+        dd(app('congress')->votation()->setDelegates()->number('16197')->getDetailedDelegatesVotation()->fetch());
 
         return view('welcome')
             ->with('laws', $lastLaws['NORMA']);

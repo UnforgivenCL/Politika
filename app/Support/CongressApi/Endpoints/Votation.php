@@ -29,4 +29,14 @@ class Votation extends AbstractEndpoint
                 ]);
             });
     }
+
+    public function getDetailedDelegatesVotation()
+    {
+        return $this->setHttpMethod('GET')
+            ->setUriGenerator(function ($params) {
+                return implode('', [
+                    'getVotacion_Detalle?prmVotacionID='.array_get($params, 'number'),
+                ]);
+            });
+    }
 }
