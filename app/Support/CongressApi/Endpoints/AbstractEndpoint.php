@@ -84,7 +84,7 @@ abstract class AbstractEndpoint
     public function getUrl(array $queryString = [])
     {
         return 'https://www.'
-            .'leychile.cl/Consulta/obtxml?'
+            .'senado.cl/wspublico/'
             .$this->generateResourceUri()
             .http_build_query($queryString);
     }
