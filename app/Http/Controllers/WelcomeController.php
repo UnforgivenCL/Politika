@@ -19,6 +19,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $lastLaws = $this->lawsRepo->getLatestLaws(3);
+        dd(app('congress')->lawproject()->number(8575)->getLawProject()->fetch());
 
         return view('welcome')
             ->with('laws', $lastLaws['NORMA']);

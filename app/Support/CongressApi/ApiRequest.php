@@ -18,6 +18,7 @@ class ApiRequest
     {
         $map = [
             'law' => Endpoints\Law::class,
+            'lawproject' => Endpoints\LawProject::class,
         ];
 
         if (!isset($map[$name])) {

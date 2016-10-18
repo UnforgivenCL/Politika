@@ -83,7 +83,7 @@ abstract class AbstractEndpoint
 
     public function getUrl(array $queryString = [])
     {
-        return 'https://www.'
+        return 'http://www.'
             .'senado.cl/wspublico/'
             .$this->generateResourceUri()
             .http_build_query($queryString);
