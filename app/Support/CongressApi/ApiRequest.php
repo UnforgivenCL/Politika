@@ -20,6 +20,8 @@ class ApiRequest
             'law' => Endpoints\Law::class,
             'lawproject' => Endpoints\LawProject::class,
             'votation' => Endpoints\Votation::class,
+            'senator' => Endpoints\Senator::class,
+            'delegate' => Endpoints\Delegate::class,
         ];
 
         if (!isset($map[$name])) {
