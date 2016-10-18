@@ -13,6 +13,7 @@ abstract class AbstractEndpoint
     protected $params = [];
     protected $uriGenerator;
     protected $httpMethod = 'GET';
+    protected $webServiceMode;
 
     protected $errorCodes = [
         500 => \App\Support\CongressApi\Exceptions\InternalServerErrorException::class,
@@ -21,6 +22,7 @@ abstract class AbstractEndpoint
     public function __construct(ClientInterface $client, $args = [])
     {
         $this->client = $client;
+        $this->webServiceMode = 1;
 
         return $this;
     }
@@ -83,10 +85,31 @@ abstract class AbstractEndpoint
 
     public function getUrl(array $queryString = [])
     {
-        return 'http://www.'
-            .'senado.cl/wspublico/'
+        if ($this->webServiceMode == 1) {
+            return 'http://www.'
+                .'senado.cl/wspublico/'
+                .$this->generateResourceUri()
+                .http_build_query($queryString);
+        } else {
+            return 'http://opendata.congreso.cl/'
+            .'wscamaradiputados.asmx/'
             .$this->generateResourceUri()
             .http_build_query($queryString);
+        }
+    }
+
+    public function setSenators()
+    {
+        $this->webServiceMode = 1;
+
+        return $this;
+    }
+
+    public function setDelegates()
+    {
+        $this->webServiceMode = 2;
+
+        return $this;
     }
 
     /**

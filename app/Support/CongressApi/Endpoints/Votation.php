@@ -9,13 +9,23 @@ class Votation extends AbstractEndpoint
         return $this->setParam('number', $number);
     }
 
-    public function getVotation()
+    public function getSenatorsVotation()
     {
         return $this->setHttpMethod('GET')
             ->setUriGenerator(function ($params) {
                 return implode('', [
                     'votaciones.php?',
                     'boletin='.array_get($params, 'number'),
+                ]);
+            });
+    }
+
+    public function getDelegatesVotation()
+    {
+        return $this->setHttpMethod('GET')
+            ->setUriGenerator(function ($params) {
+                return implode('', [
+                    'getVotaciones_Boletin?prmBoletin='.array_get($params, 'number'),
                 ]);
             });
     }
