@@ -22,6 +22,7 @@ class ApiRequest
             'votation' => Endpoints\Votation::class,
             'senator' => Endpoints\Senator::class,
             'delegate' => Endpoints\Delegate::class,
+            'session' => Endpoints\SenatorRoomSession::class,
         ];
 
         if (!isset($map[$name])) {
