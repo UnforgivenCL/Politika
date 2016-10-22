@@ -25,3 +25,10 @@ Route::post('laws/search', ['uses' => 'LawsController@search', 'as' => 'search.l
 
 Route::get('auth/facebook', ['uses' => 'Auth\RegisterController@redirectToProvider', 'as' => 'login.facebook']);
 Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
+
+Route::group([
+    'namespace' => 'Admin',
+    'prefix' => 'admin',
+], function () {
+    require __DIR__.'/web/admin/admin.php';
+});
