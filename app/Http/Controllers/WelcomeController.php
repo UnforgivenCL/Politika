@@ -18,7 +18,7 @@ class WelcomeController extends Controller
 
     public function index()
     {
-        $lastLaws = $this->lawsRepo->getLatestLaws(9);
+        $lastLaws = $this->lawsRepo->getLatestLaws(3);
 
         return view('welcome')
             ->with('laws', $lastLaws['NORMA']);

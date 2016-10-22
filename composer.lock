@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6a62afde4c24539794079bfeecbc54d2",
-    "content-hash": "20abac9a9f79ec52098511b13a445b10",
+    "hash": "89611c919a6d86f161f01de4cda02fd6",
+    "content-hash": "b04a46910d605613c4518d2b9fa82c75",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2441,8 +2441,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/Users/giova/Desktop/packages/unforgivencl/larachileancongress",
-                "reference": "5c793ee838cfffc97b688b98cde54a92c775ab0e"
+                "url": "https://github.com/UnforgivenCL/LaraChileanCongress.git",
+                "reference": "9de03e4f29a82336dca22d9fe8fb01ad01d1e61b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UnforgivenCL/LaraChileanCongress/zipball/9de03e4f29a82336dca22d9fe8fb01ad01d1e61b",
+                "reference": "9de03e4f29a82336dca22d9fe8fb01ad01d1e61b",
+                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.2",
@@ -2455,6 +2461,7 @@
                     "Unforgivencl\\LaraChileanCongress\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2465,15 +2472,21 @@
                 }
             ],
             "description": "Provides an wrapper to opendata.congreso.cl with Laravel 5.3.",
-            "time": "2016-10-22 22:21:45"
+            "time": "2016-10-22 22:41:02"
         },
         {
             "name": "unforgivencl/larachileanlaw",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/Users/giova/Desktop/unforgivencl/larachileanlaw",
+                "url": "https://github.com/UnforgivenCL/LaraChileanLaw.git",
                 "reference": "aa7e8fab88b17b4cfc045a32a30eb20fdf7b5a0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UnforgivenCL/LaraChileanLaw/zipball/aa7e8fab88b17b4cfc045a32a30eb20fdf7b5a0b",
+                "reference": "aa7e8fab88b17b4cfc045a32a30eb20fdf7b5a0b",
+                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.2",
@@ -2486,6 +2499,7 @@
                     "Unforgivencl\\LaraChileanLaw\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],

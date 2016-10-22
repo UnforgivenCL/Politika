@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Delegate;
+use ChileanCongress;
 use DB;
 
 class DelegatesRepository
@@ -48,6 +49,39 @@ class DelegatesRepository
         $this->db = DB::getMongoDB();
     }
 
+    public function createDelegatesFromAPI()
+    {
+        $delegates = $this->getUpdatedDelegates();
+
+        foreach ($delegates['Diputado'] as $delegate) {
+            $_id = array_get($delegate, 'DIPID');
+
+            if (empty($delegate) || empty($_id)) {
+                return;
+            }
+
+            $d = $this->findById($_id);
+
+            if ($d !== null) {
+                return $d;
+            }
+
+            DB::collection('delegates')->insert(['_id' => $_id, 'data' => $delegate]);
+        }
+
+        $this->updateDelegatesPoliticalGroup();
+    }
+
+    public function findById($id)
+    {
+        return Delegate::where('_id', $id)->get()->first();
+    }
+
+    public function getUpdatedDelegates()
+    {
+        return ChileanCongress::delegate()->setDelegates()->getDelegates()->fetch();
+    }
+
     public function updateDelegatesRegion()
     {
         $delegates = Delegate::all();
@@ -63,10 +97,9 @@ class DelegatesRepository
     public function updateDelegatesPoliticalGroup()
     {
         $delegates = Delegate::all();
-
         foreach ($delegates as $delegate) {
-            if (isset(self::$politicalGroups[$delegate->partido])) {
-                $delegate->partido = self::$politicalGroups[$delegate->partido];
+            if (isset(self::$politicalGroups[$delegate->data['Militancia_Actual']['Partido']])) {
+                $delegate['partido'] = self::$politicalGroups[$delegate->data['Militancia_Actual']['Partido']];
                 $delegate->save();
             }
         }
