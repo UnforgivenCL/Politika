@@ -8,6 +8,10 @@
 	    {
 	        "type":"vcs",
 	        "url":"/Users/giova/Desktop/unforgivencl/larachileanlaw"
+	    },
+	    {
+	        "type":"vcs",
+	        "url":"/Users/giova/Desktop/packages/unforgivencl/larachileancongress"
 	    }
 	],
     "require": {
@@ -18,7 +22,8 @@
         "cviebrock/eloquent-sluggable": "^4.1",
         "jenssegers/mongodb": "^3.0",
         "laravel/socialite": "^2.0",
-        "unforgivencl/larachileanlaw": "dev-master"
+        "unforgivencl/larachileanlaw": "dev-master",
+        "unforgivencl/larachileancongress": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

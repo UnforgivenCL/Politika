@@ -116,8 +116,6 @@ abstract class AbstractEndpoint
      * Send HTTP request to Chilean Law API.
      *
      * @param array $queryParameters Optional query string data
-     * @param int   $retries         Number of retries to send request, if failed or
-     *                               being limited by Riot server
      *
      * @return array                         If request a single entry
      * @return Illuminate\Support\Collection If request a collection of resources
@@ -130,10 +128,6 @@ abstract class AbstractEndpoint
             $result = $this->client->request($this->httpMethod, $url);
 
             // Process response data
-            /*$data = json_decode($result->getBody(), true);
-            if (isset($data[0]) && is_array($data[0])) {
-                return new Collection($data);
-            }*/
 
             $data = $result->getBody();
 
@@ -159,7 +153,7 @@ abstract class AbstractEndpoint
      * Children classes have to define how to handle with error.
      * Throwing exceptions for example.
      *
-     * @param  $response Response returned from Riot API
+     * @param  $response Response returned from WS
      */
     public function handleError($response)
     {

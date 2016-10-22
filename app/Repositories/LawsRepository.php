@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Law;
 use DB;
-use LaraChileanLaw;
+use ChileanLaw;
 use App\Support\CongressApi\Exceptions\InternalServerErrorException;
 
 class LawsRepository
@@ -37,7 +37,7 @@ class LawsRepository
         $laws = app('cache')->get($key);
 
         if ($laws === null) {
-            $laws = LaraChileanLaw::law()->paginate($paginate)->getLatestPublished()->fetch();
+            $laws = ChileanLaw::law()->paginate($paginate)->getLatestPublished()->fetch();
             app('cache')->put($key, $laws, 60 * 24);
         }
 
@@ -49,7 +49,7 @@ class LawsRepository
         try {
             $law = $this->find($bcnId);
             if ($law === null) {
-                $law = LaraChileanLaw::law()->number($bcnId)->getLatestSpecific()->fetch();
+                $law = ChileanLaw::law()->number($bcnId)->getLatestSpecific()->fetch();
                 $this->createLaw($law);
 
                 return $law;
@@ -64,7 +64,7 @@ class LawsRepository
     public function getBySearch($search)
     {
         try {
-            $laws = LaraChileanLaw::law()->paginate(5)->content($search)->getByContent()->fetch();
+            $laws = ChileanLaw::law()->paginate(5)->content($search)->getByContent()->fetch();
 
             return $laws;
         } catch (InternalServerErrorException $e) {
