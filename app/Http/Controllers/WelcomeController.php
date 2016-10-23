@@ -12,6 +12,7 @@ class WelcomeController extends Controller
 
     public function __construct()
     {
+        $this->middleware('guest');
         $this->lawsRepo = app(LawsRepository::class);
         $this->delegatesRepo = app(DelegatesRepository::class);
     }
