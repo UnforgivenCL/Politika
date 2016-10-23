@@ -6,20 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use ChileanCongress;
 use App\Repositories\DelegatesRepository;
+use DB;
 
 class UpdateDelegatesWithPoliticalGroupJob implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
-
-    protected $delegatesRepo;
 
     /**
      * Create a new job instance.
      */
     public function __construct()
     {
-        $this->delegatesRepo = app(DelegatesRepository::class);
     }
 
     /**
@@ -27,6 +26,25 @@ class UpdateDelegatesWithPoliticalGroupJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->delegatesRepo->createDelegatesFromAPI();
+        $delegates = ChileanCongress::delegate()->setDelegates()->getDelegates()->fetch();
+        $repo = app(DelegatesRepository::class);
+
+        foreach ($delegates['Diputado'] as $delegate) {
+            $_id = array_get($delegate, 'DIPID');
+
+            if (empty($delegate) || empty($_id)) {
+                return;
+            }
+
+            $d = $repo->findById($_id);
+
+            if ($d !== null) {
+                return $d;
+            }
+
+            DB::collection('delegates')->insert(['_id' => $_id, 'data' => $delegate]);
+        }
+
+        $repo->updateDelegatesPoliticalGroup();
     }
 }

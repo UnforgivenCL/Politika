@@ -54,7 +54,7 @@
 					<h3>Panel de administración</h3>
 				</div>
 				<div class="col-sm-3 col-sm-offset-1">
-					<button class="btn btn-lg btn-success">Actualizar Diputados</button>
+					<a href="{{ route('admin.job.update-delegates') }}"><button class="btn btn-lg btn-success">Actualizar Diputados</button></a>
 				</div>
 				<div class="col-sm-3 col-sm-offset-1">
 					<h4>asd</h4>
