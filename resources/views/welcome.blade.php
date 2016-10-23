@@ -43,6 +43,9 @@
 					<div class="col-md-4">
 						<div>
 							<h4>¿Que partido político tiene mayor presencia?</h4>
+							<div>
+								{!! $chart->render() !!}
+							</div>
 						</div>
 					</div>
 					<div class="col-md-4">

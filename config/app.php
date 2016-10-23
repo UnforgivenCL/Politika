@@ -172,6 +172,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Unforgivencl\LaraChileanLaw\LaraChileanLawServiceProvider::class,
         Unforgivencl\LaraChileanCongress\LaraChileanCongressServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'ChileanLaw' => Unforgivencl\LaraChileanLaw\Facades\LaraChileanLaw::class,
         'ChileanCongress' => Unforgivencl\LaraChileanCongress\Facades\LaraChileanCongress::class,
+        'Charts' => ConsoleTVs\Charts\Charts::class,
     ],
 
 ];

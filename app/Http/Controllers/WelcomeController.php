@@ -19,9 +19,11 @@ class WelcomeController extends Controller
 
     public function index()
     {
+        $chart = $this->delegatesRepo->getChartWithDelegates();
         $lastLaws = $this->lawsRepo->getLatestLaws(3);
 
         return view('welcome')
-            ->with('laws', $lastLaws['NORMA']);
+            ->with('laws', $lastLaws['NORMA'])
+            ->with('chart', $chart);
     }
 }

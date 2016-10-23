@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Delegate;
 use DB;
+use Charts;
 
 class DelegatesRepository
 {
@@ -90,14 +91,18 @@ class DelegatesRepository
         return $delegates;
     }
 
-    protected function map($result, $fn = null)
+    public function getChartWithDelegates()
     {
-        $d = [];
-        foreach ($result as $i) {
-            $d[$i['_id']] = $fn !== null ? $fn($i) : $i;
-        }
+        $delegatesData = $this->getCountDelegatesByPoliticalGroup();
 
-        return $d;
+        $chart = Charts::create('donut', 'google')
+            ->setTitle('My nice chart')
+            ->setLabels(['First', 'Second', 'Third'])
+            ->setValues([40, 60, 20])
+            ->setDimensions(300, 300)
+            ->setResponsive(false);
+
+        return $chart;
     }
 
     public function getCountDelegatesByPoliticalGroup()
@@ -146,5 +151,15 @@ class DelegatesRepository
                 ],
             ],
         ])->toArray();
+    }
+
+    protected function map($result, $fn = null)
+    {
+        $d = [];
+        foreach ($result as $i) {
+            $d[$i['_id']] = $fn !== null ? $fn($i) : $i;
+        }
+
+        return $d;
     }
 }

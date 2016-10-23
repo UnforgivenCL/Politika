@@ -13,7 +13,8 @@
         "jenssegers/mongodb": "^3.0",
         "laravel/socialite": "^2.0",
         "unforgivencl/larachileanlaw": "dev-master",
-        "unforgivencl/larachileancongress": "dev-master"
+        "unforgivencl/larachileancongress": "dev-master",
+        "consoletvs/charts": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
