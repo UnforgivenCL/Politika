@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $lastLaws = $this->lawsRepo->getLatestLaws(3);
-        dd($lastLaws);
+        //dd($lastLaws);
 
         return view('dashboard.home')
         ->with('laws', $lastLaws['NORMA']);

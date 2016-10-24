@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Delegate;
+use App\PoliticalGroup;
 use DB;
 use Charts;
 
@@ -42,6 +43,22 @@ class DelegatesRepository
         'Evopolis' => 11,
         'Partido Liberal de Chile' => 12,
         'Revolución Democrática' => 13,
+    ];
+
+    public static $politicalGroupsAlias = [
+        'Izquierda Ciudadana' => 'IC',
+        'Partido Socialista' => 'PS',
+        'Unión Demócrata Independiente' => 'UDI',
+        'Partido Demócrata Cristiano' => 'PDC',
+        'Partido Por la Democracia' => 'PPD',
+        'Renovación Nacional' => 'RN',
+        'Independientes' => 'Indep.',
+        'Amplitud' => 'Ampl.',
+        'Partido Comunista' => 'PC',
+        'Partido Radical Social Demócrata' => 'PRSC',
+        'Evopolis' => 'Evop.',
+        'Partido Liberal de Chile' => 'PLC',
+        'Revolución Democrática' => 'RD',
     ];
 
     public function __construct()
@@ -95,12 +112,21 @@ class DelegatesRepository
     {
         $delegatesData = $this->getCountDelegatesByPoliticalGroup();
 
-        $chart = Charts::create('donut', 'google')
-            ->setTitle('My nice chart')
-            ->setLabels(['First', 'Second', 'Third'])
-            ->setValues([40, 60, 20])
-            ->setDimensions(300, 300)
-            ->setResponsive(false);
+        $politicalGroups = PoliticalGroup::all();
+
+        foreach ($politicalGroups as $group) {
+            $delegatesData[0][$group->_id]['nombrePartido'] = self::$politicalGroupsAlias[$group->name];
+        }
+
+        $politicalNames = array_column($delegatesData[0], 'nombrePartido');
+        $politicalGroupValues = array_column($delegatesData[0], 'totalDelegates');
+
+        $chart = Charts::create('pie', 'highcharts')
+            ->setTitle('Distribución política(Cámara de Diputados)')
+            ->setLabels($politicalNames)
+            ->setValues($politicalGroupValues)
+            ->setDimensions(400, 400)
+            ->setResponsive(true);
 
         return $chart;
     }
