@@ -122,7 +122,7 @@ class DelegatesRepository
         $politicalGroupValues = array_column($delegatesData[0], 'totalDelegates');
 
         $chart = Charts::create('pie', 'highcharts')
-            ->setTitle('Distribución política(Cámara de Diputados)')
+            ->setTitle('Cámara de Diputados')
             ->setLabels($politicalNames)
             ->setValues($politicalGroupValues)
             ->setDimensions(400, 400)
