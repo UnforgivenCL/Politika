@@ -18,7 +18,7 @@
 				<button class="btn btn-info">Iniciar Debate</button>
 			</div>
 			<hr>
-			<h5>Palabrás mas destacadas:</h5>
+			<h5>Palabras más destacadas:</h5>
 			@foreach ($words as $word)
 				@if (!$loop->last)
 					<strong>{{ isset($word['word']) ? $word['word'].' -' : '' }}</strong>
