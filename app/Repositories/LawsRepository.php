@@ -9,6 +9,10 @@ use App\Support\CongressApi\Exceptions\InternalServerErrorException;
 
 class LawsRepository
 {
+    private static $excludedWords = [
+
+    ];
+
     public function createLaw($input)
     {
         $_id = array_get($input['@attributes'], 'normaId');
@@ -70,5 +74,28 @@ class LawsRepository
         } catch (InternalServerErrorException $e) {
             return 'No existen leyes con tal contenido';
         }
+    }
+
+    public function getMostRepeatedWordOfLaw($bcnId)
+    {
+        $law = $this->getLatestByBCN($bcnId);
+        $topK = app('topkwords');
+
+        if (isset($law['EstructurasFuncionales']['EstructuraFuncional'])) {
+            foreach ($law['EstructurasFuncionales']['EstructuraFuncional'] as $content) {
+                if (isset($content['Texto'])) {
+                    foreach (explode(' ', $content['Texto']) as $word) {
+                        $word = trim($word);
+                        if (empty($word)) {
+                            continue;
+                        }
+
+                        $topK->insertAWord($word);
+                    }
+                }
+            }
+        }
+
+        dd($topK->getTopKWords());
     }
 }
