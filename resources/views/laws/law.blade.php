@@ -17,6 +17,15 @@
 				<h3>¿Te interesa debatir sobre esta norma?</h3>
 				<button class="btn btn-info">Iniciar Debate</button>
 			</div>
+			<hr>
+			<h5>Palabrás mas destacadas:</h5>
+			@foreach ($words as $word)
+				@if (!$loop->last)
+					<strong>{{ isset($word['word']) ? $word['word'].' -' : '' }}</strong>
+				@else
+					<strong>{{ isset($word['word']) ? $word['word'] : '' }}</strong>
+				@endif
+			@endforeach
 		</div>
 	</div>
 	<div class="container">

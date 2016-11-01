@@ -24,10 +24,10 @@ class LawsController extends Controller
     public function searchByBCN($bcnId)
     {
         $law = $this->lawsRepo->getLatestByBCN($bcnId);
-        $this->lawsRepo->getMostRepeatedWordOfLaw($bcnId);
 
         return view('laws.law')
-            ->with('law', $law);
+            ->with('law', $law['data'])
+            ->with('words', $law['frequent']);
     }
 
     public function search(SearchLawsRequest $request)

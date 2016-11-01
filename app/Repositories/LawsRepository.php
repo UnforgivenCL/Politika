@@ -23,7 +23,7 @@ class LawsRepository
         '"y', 'refiere', 'entre', 'siguiente:', 'Intercálase',
         'sobre', 'agrégase', 'podrán', 'este', 'siguientes',
         'segundo', 'Agrégase', 'continuación', 'sea',
-        'En', 'frase:',
+        'En', 'frase:', 'monumento,',
 
     ];
 
@@ -72,8 +72,9 @@ class LawsRepository
 
                 return $law;
             }
+            $law['frequent'] = $this->getMostRepeatedWordOfLaw($law['data']);
 
-            return $law['data'];
+            return $law;
         } catch (InternalServerErrorException $e) {
             return 'Error al obtener ley';
         }
