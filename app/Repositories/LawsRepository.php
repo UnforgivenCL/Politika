@@ -10,6 +10,20 @@ use App\Support\CongressApi\Exceptions\InternalServerErrorException;
 class LawsRepository
 {
     private static $excludedWords = [
+        'de', 'El', 'la', 'Artículo', 'la',
+        'en', 'y', 'Las', 'los', 'se', 'o',
+        'con', 'comuna', 'el', 'que', 'las',
+        'a', 'artículo', 'por', 'esta', 'un',
+        'una', 'del', 'Créase', 'mediante', 'su',
+        'no', ',', '",', 'lo', 'para', 'al', 'a)',
+        'b)', 'c)', 'd)', 'e)', 'N°', 'Ley', 'siguiente',
+        'ley', 'valores', 'Reemplázase', 'letra',
+        'inciso', 'expresión', 'número', 'Modifícase',
+        'numeral', 'punto', 'podrá', 'ser', 'y', 'como',
+        '"y', 'refiere', 'entre', 'siguiente:', 'Intercálase',
+        'sobre', 'agrégase', 'podrán', 'este', 'siguientes',
+        'segundo', 'Agrégase', 'continuación', 'sea',
+        'En', 'frase:',
 
     ];
 
@@ -76,9 +90,8 @@ class LawsRepository
         }
     }
 
-    public function getMostRepeatedWordOfLaw($bcnId)
+    public function getMostRepeatedWordOfLaw($law)
     {
-        $law = $this->getLatestByBCN($bcnId);
         $topK = app('topkwords');
 
         if (isset($law['EstructurasFuncionales']['EstructuraFuncional'])) {
@@ -86,7 +99,7 @@ class LawsRepository
                 if (isset($content['Texto'])) {
                     foreach (explode(' ', $content['Texto']) as $word) {
                         $word = trim($word);
-                        if (empty($word)) {
+                        if (empty($word) || in_array($word, self::$excludedWords)) {
                             continue;
                         }
 
@@ -96,6 +109,6 @@ class LawsRepository
             }
         }
 
-        dd($topK->getTopKWords());
+        return $topK->getTopKWords();
     }
 }
