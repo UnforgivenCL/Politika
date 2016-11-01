@@ -22,7 +22,7 @@ class WelcomeController extends Controller
 
     public function index()
     {
-        dd($this->senatorsRepo->getJournalById('7674'));
+        dd($this->senatorsRepo->getActualSessionsOfLegislature());
         $chart = $this->delegatesRepo->getChartWithDelegates();
         $lastLaws = $this->lawsRepo->getLatestLaws(3);
 

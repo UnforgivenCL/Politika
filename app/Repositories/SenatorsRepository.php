@@ -6,21 +6,83 @@ use ChileanCongress;
 
 class SenatorsRepository
 {
-    public function getJournalById($id)
-    {
-        $journal = ChileanCongress::session()->number($id)->getSessionJournal()->fetch();
+    protected $cache;
 
-        dd($this->extractOrdersOfDayOfSession($journal));
+    public function __construct()
+    {
+        $this->cache = app('cache');
     }
 
-    public function getSessionsActualLegislature()
+    public function getJournalById($id)
     {
-        $actualLegislature = ChileanCongress::legislature()->setDelegates()->getActualLegislature()->fetch();
-        $actualLegislatureNumber = $actualLegislature['Numero'];
+        $key = 'journal-'.$id;
+        $journal = $this->cache->get($key);
 
-        $sessions = ChileanCongress::session()->number($actualLegislatureNumber)->getSessions()->fetch();
+        if ($journal == null) {
+            $journal = ChileanCongress::session()->number($id)->getSessionJournal()->fetch();
+
+            $this->cache->put($key, $journal, 60 * 24);
+        }
+
+        return $journal;
+    }
+
+    public function getVotationById($id)
+    {
+        $key = 'votation-'.$id;
+        $votation = $this->cache->get($key);
+
+        if ($votation == null) {
+            $votation = ChileanCongress::votation()->number($id)->getSenatorsVotation()->fetch();
+
+            $this->cache->put($key, $votation, 60 * 24);
+        }
+
+        return $votation;
+    }
+
+    public function getActualSessionsOfLegislature()
+    {
+        $legislatureNumber = $this->getActualLegislature();
+
+        $key = 'actual-sessions-legislature-'.$legislatureNumber;
+        $sessions = $this->cache->get($key);
+
+        if ($sessions == null) {
+            $sessions = ChileanCongress::session()->number($legislatureNumber)->getSessions()->fetch();
+
+            $this->cache->put($key, $sessions, 60 * 24);
+        }
 
         return $sessions;
+    }
+
+    public function getActualLegislature()
+    {
+        $key = 'actual-legislature';
+        $actualLegislature = $this->cache->get($key);
+
+        if ($actualLegislature == null) {
+            $actualLegislature = ChileanCongress::legislature()->setDelegates()->getActualLegislature()->fetch();
+
+            $this->cache->put($key, $actualLegislature, 60 * 24);
+        }
+
+        return $this->extractActualLegislatureNumber($actualLegislature);
+    }
+
+    public function getVotationsOfSessionById($id)
+    {
+        $journal = $this->getJournalById($id);
+        $votationsIds = $this->extractOrdersOfDayOfSession($journal);
+        $votationsData = [];
+
+        foreach ($votationsIds as $votationId) {
+            $votation = $this->getVotationById($votationId);
+            $votationsData[$votationId] = $votation;
+        }
+
+        return $votationsData;
     }
 
     protected function extractOrdersOfDayOfSession($session)
@@ -36,5 +98,10 @@ class SenatorsRepository
         }
 
         return $projectsIds;
+    }
+
+    protected function extractActualLegislatureNumber($actualLegislature)
+    {
+        return $actualLegislature['Numero'];
     }
 }
