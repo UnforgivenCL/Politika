@@ -2521,12 +2521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UnforgivenCL/LaraChileanCongress.git",
-                "reference": "9de03e4f29a82336dca22d9fe8fb01ad01d1e61b"
+                "reference": "6b628d07b9e60dfa024674532c9ada95a7a4dd00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UnforgivenCL/LaraChileanCongress/zipball/9de03e4f29a82336dca22d9fe8fb01ad01d1e61b",
-                "reference": "9de03e4f29a82336dca22d9fe8fb01ad01d1e61b",
+                "url": "https://api.github.com/repos/UnforgivenCL/LaraChileanCongress/zipball/6b628d07b9e60dfa024674532c9ada95a7a4dd00",
+                "reference": "6b628d07b9e60dfa024674532c9ada95a7a4dd00",
                 "shasum": ""
             },
             "require": {
@@ -2551,7 +2551,7 @@
                 }
             ],
             "description": "Provides an wrapper to opendata.congreso.cl with Laravel 5.3.",
-            "time": "2016-10-22 22:41:02"
+            "time": "2016-11-01 18:18:10"
         },
         {
             "name": "unforgivencl/larachileanlaw",
